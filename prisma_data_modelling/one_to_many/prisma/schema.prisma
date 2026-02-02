@@ -1,0 +1,34 @@
+
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+  engineType = "client"
+	runtime = "bun"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//@id means this is the primary key for the table
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String
+  username     String   @unique
+  firstname    String?  //optional 
+  lastname     String
+  password     String
+  todos        Todo[]  //one user can have many todos
+}
+
+model Todo {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  done        Boolean   @default(false)
+  userId      Int       //it is to relate both tables
+  user        User      @relation(fields: [userId] ,references: [id] )
+}
+

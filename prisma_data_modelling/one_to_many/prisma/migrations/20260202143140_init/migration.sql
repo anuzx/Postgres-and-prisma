@@ -1,10 +1,11 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
+    "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
     "firstname" TEXT,
-    "lastname" TEXT,
+    "lastname" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -13,7 +14,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Todo" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
+    "description" TEXT,
     "done" BOOLEAN NOT NULL DEFAULT false,
     "userId" INTEGER NOT NULL,
 

@@ -1,0 +1,19 @@
+{
+  "name": "one_to_many",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^7.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "@prisma/extension-accelerate": "^3.0.1",
+    "pg": "^8.18.0"
+  }
+}
