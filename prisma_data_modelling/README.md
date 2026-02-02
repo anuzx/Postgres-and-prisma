@@ -48,6 +48,7 @@ psql -h localhost -U postgres
 \dt;
 ```
 <br>
+
 TO come back 
 ```
 exit 

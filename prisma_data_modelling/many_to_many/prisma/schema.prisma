@@ -1,0 +1,47 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//implicit many ot many-> in this prisma itself handels the intermediate table
+
+model Post{
+  id       Int  @id   @default(autoincrement())
+  title    String
+  tags     Tag[] //one post can have mutilple tags
+}
+
+model Tag{
+  id       Int  @id  @default(autoincrement())
+  post     Post[] //one tag can be used in multiple posts
+}
+
+//explicit many to many -> we have to make the table ,its more customisable 
+
+model Posts{
+  id       Int  @id   @default(autoincrement())
+  title    String
+  tags     PostTag[] 
+}
+
+model Tags{
+  id       Int  @id  @default(autoincrement())
+  post     PostTag[] 
+}
+
+
+//intermediate table
+model PostTag {
+   postId       Int 
+   post         Posts @relation(fields: [postId], references: [id])
+
+   tagId        Int 
+   tag          Tags   @relation(fields: [tagId], references: [id])
+
+   @@id([postId , tagId]) //id of PostTag
+}
